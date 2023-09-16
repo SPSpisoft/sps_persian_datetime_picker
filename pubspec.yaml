@@ -1,7 +1,7 @@
 name: sps_persian_datetime_picker
 description: persian datetime picker
-version: 1.2.0
-homepage:
+version: 2.0.0
+homepage: https://github.com/SPSpisoft/sps_persian_datetime_picker
 
 environment:
   sdk: '>=3.1.2 <4.0.0'
