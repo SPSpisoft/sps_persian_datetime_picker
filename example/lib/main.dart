@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:sps_persian_datetime_picker/sps_persian_datetime_picker.dart';
 import 'dart:convert' as convert;
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
 
 final ThemeData androidTheme = ThemeData(
   fontFamily: 'Dana',
 );
 
 void main() {
-  tz.initializeTimeZones();
+  // tz.initializeTimeZones();
   runApp(MyApp());
 }
 
@@ -48,9 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    var locations = tz.timeZoneDatabase.locations;
-    print(">>>>  " + locations.length.toString());
-    print(">>  " + tz.local.name);
+    // var locations = tz.timeZoneDatabase.locations;
+    // print(">>>>  " + locations.length.toString());
+    // print(">>  " + tz.local.name);
 
 
     super.initState();
@@ -68,11 +65,11 @@ class _MyHomePageState extends State<MyHomePage> {
           } else {
             mDT = snapshot.data!;
 
-            final Tehran = tz.getLocation('Asia/Tehran');
-            dateTime = DateTime.parse(mDT!.datetime!);
-            final localizedDt = tz.TZDateTime.from(dateTime!, Tehran);
-            print(">  " + localizedDt.toString());
-            dateTime = localizedDt;
+            // final Tehran = tz.getLocation('Asia/Tehran');
+            // dateTime = DateTime.parse(mDT!.datetime!);
+            // final localizedDt = tz.TZDateTime.from(dateTime!, Tehran);
+            // print(">  " + localizedDt.toString());
+            // dateTime = localizedDt;
 
             return Directionality(
               textDirection: TextDirection.rtl,
@@ -414,7 +411,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       label,
                       style: Theme.of(context)
                           .textTheme
-                          .headline5!
+                          .displayLarge!
                           .copyWith(color: Colors.black),
                       textAlign: TextAlign.center,
                     ),
@@ -509,27 +506,27 @@ Future<ClsTime> fetchDateTime() async {
   ClsTime sRet = ClsTime();
   var url = Uri.parse('http://worldtimeapi.org/api/timezone/Asia/Tehran');
 
-  try {
-    final response = await http.get(
-      url,
-      headers: <String, String>{
-        'content-type': 'application/json',
-        'accept': 'application/json',
-        // 'authorization': Globals.basicAuth
-      },
-    );
-
-    if (response.statusCode == 200) {
-      print(convert.jsonDecode(response.body));
-      sRet = ClsTime.fromJson(convert.jsonDecode(response.body));
-    } else {
-      print(response.statusCode);
-      print(response.body);
-    }
-  } catch (e) {
-    print(e);
-    return Future.error(e.toString());
-  }
+  // try {
+  //   final response = await http.get(
+  //     url,
+  //     headers: <String, String>{
+  //       'content-type': 'application/json',
+  //       'accept': 'application/json',
+  //       // 'authorization': Globals.basicAuth
+  //     },
+  //   );
+  //
+  //   if (response.statusCode == 200) {
+  //     print(convert.jsonDecode(response.body));
+  //     sRet = ClsTime.fromJson(convert.jsonDecode(response.body));
+  //   } else {
+  //     print(response.statusCode);
+  //     print(response.body);
+  //   }
+  // } catch (e) {
+  //   print(e);
+  //   return Future.error(e.toString());
+  // }
 
   return sRet;
 }

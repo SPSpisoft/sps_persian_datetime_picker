@@ -241,7 +241,7 @@ class PDayPicker extends StatelessWidget {
     final int firstDayOffset =
         _computeFirstDayOffset(year, month, localizations);
     final List<Widget> labels = <Widget>[
-      ..._getDayHeaders(themeData.textTheme.caption, localizations),
+      ..._getDayHeaders(themeData.textTheme.headlineMedium, localizations),
     ];
     for (int i = 0; true; i += 1) {
       // 1-based day of month, e.g. 1-31 for January, and 1-29 for February on
@@ -258,7 +258,7 @@ class PDayPicker extends StatelessWidget {
                 !selectableDayPredicate!(dayToBuild));
 
         BoxDecoration? decoration;
-        TextStyle? itemStyle = themeData.textTheme.bodyText2;
+        TextStyle? itemStyle = themeData.textTheme.bodyMedium;
 
         final bool isSelectedDay = selectedDate.year == year &&
             selectedDate.month == month &&
@@ -272,13 +272,13 @@ class PDayPicker extends StatelessWidget {
             shape: BoxShape.circle,
           );
         } else if (disabled) {
-          itemStyle = themeData.textTheme.bodyText2!
+          itemStyle = themeData.textTheme.bodyMedium!
               .copyWith(color: themeData.disabledColor);
         } else if (currentDate.year == year &&
             currentDate.month == month &&
             currentDate.day == day) {
           // The current day gets a different text color.
-          itemStyle = themeData.textTheme.bodyText1!
+          itemStyle = themeData.textTheme.bodyLarge!
               .copyWith(color: themeData.cardColor);
         }
 
@@ -327,7 +327,7 @@ class PDayPicker extends StatelessWidget {
               child: ExcludeSemantics(
                 child: Text(
                   displayedMonth.formatMonthYear(),
-                  style: themeData.textTheme.subtitle1,
+                  style: themeData.textTheme.labelMedium,
                 ),
               ),
             ),
